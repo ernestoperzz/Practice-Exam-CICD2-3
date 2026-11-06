@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from pydantic import BaseModel, StringConstraints, Field, titleStr, authorStr, isbnStr, ConfigDict
+from pydantic import BaseModel, StringConstraints, Field, ConfigDict
 
 titleStr = Annotated[str, StringConstraints(min_length = 2, max_length = 100)]
 authorStr = Annotated[str, StringConstraints(min_length = 2, max_length = 50)]
@@ -14,8 +14,8 @@ class BookCreate(BaseModel):
     year : int = Field(gt = 1450, lt = 2027)
 
 
-class BookReading(BaseModel)
-    model_config = ConfigDict(from attributes = True)
+class BookReading(BaseModel):
+    model_config = ConfigDict(from_attributes = True)
     id:int
     title : titleStr
     author : authorStr
